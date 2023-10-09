@@ -1,19 +1,10 @@
 @use'config/reset';
 @use'config/variaveis';
-@use'sass:math';
 
-@mixin elementoForm(){
-    padding: 8px;
-    display: block;
-    width: 100%;
-    margin-bottom: 16px;
-}
-@function pixelParaEm($alvoEmPixel,$contextoEmPixel:16px){
-    @return math.div($alvoEmPixel,$contextoEmPixel);
-}
+
 
 body{
-    background-color: #eee;
+    background-color:variaveis.$corDeFundoCorpo;
 }
 .container{
     max-width: 1024px;
@@ -22,55 +13,37 @@ body{
 }
 header{
     padding: 16px 0;
-    background-color: variaveis.$corPrincipal;
+    background-color: variaveis.$corDeFundoHeader;
     text-align: center;
-    color:#fff;
+    color: variaveis.$corDoTexto;
 }
-.form-container{
-    height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 760px;
+
+.menu{
+    background-color: variaveis.$corDeFundoHeader;
+}
+
+
+    @media screen and (max-width: variaveis.$tablet) {
+        .container {
+            max-width: 80%;
+        }
     
-    h2{
-        font-size: pixelParaEm(48px);
-        text-align: center;
-    }
-
-    form{
-        width: 100%;
-        max-width: 480px;
-        margin-top: 40px;
-
-        label{
-            font-weight: bold;
-            cursor: pointer;
-        }
-        input{
-            @include elementoForm();
-            background-color: transparent;
-            border: none;
-            border-bottom: 3px solid variaveis.$corPrincipal;
-        }
-        button{
-            @include elementoForm();
-            background-color: variaveis.$corSecundaria;
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            &:hover{
-                background-color: darken(variaveis.$corSecundaria, 15%);
-            }
-        }
-            
+        .products {
+            grid-template-columns: repeat(2, 48.5%);
+            column-gap: 3%;
         }
     }
+
     @media screen and (max-width:variaveis.$mobile){
         .container{
             max-width: 80%;
+        }
+        .products {
+            display: block;
+        }
+    
+        .product-item  {
+            margin-bottom: 32px;
         }
     }     
     
